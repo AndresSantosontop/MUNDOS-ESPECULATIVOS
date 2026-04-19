@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundos Especulativos - UNAH Comayagua</title>
+    <title>Mundos Especulativos - UNAH Campus Comayagua</title>
     <style>
         :root {
             --unah-azul: #003366;
             --unah-oro: #FFCC00;
             --blanco: #ffffff;
             --texto-oscuro: #1a1a1a;
-            --overlay: rgba(244, 247, 246, 0.94);
+            --overlay: rgba(244, 247, 246, 0.96);
+            /* Sombras con profundidad natural (estilo manual) */
+            --sombra-pulida: 0 10px 20px -5px rgba(0, 51, 102, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --sombra-hover: 0 20px 25px -5px rgba(0, 51, 102, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
@@ -30,10 +33,7 @@
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--overlay);
             z-index: -1;
         }
@@ -42,7 +42,7 @@
         .navbar {
             background-color: var(--unah-azul);
             border-bottom: 5px solid var(--unah-oro);
-            padding: 1rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,156 +51,110 @@
             z-index: 1000;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .brand { display: flex; align-items: center; gap: 15px; }
+        .logo-unah { height: 50px; width: auto; background: white; padding: 4px; border-radius: 6px; }
+        .brand-text { color: white; font-weight: 800; font-size: 1rem; letter-spacing: 0.5px; }
 
-        .logo-unah {
-            height: 50px;
-            width: auto;
-            background: white;
-            padding: 4px;
-            border-radius: 6px;
-        }
-
-        .brand-text {
-            color: white;
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
-
+        .navbar ul { display: flex; list-style: none; }
         .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            color: white; text-decoration: none; margin-left: 15px; font-size: 0.75rem; 
+            font-weight: 600; text-transform: uppercase; transition: color 0.3s;
         }
+        .navbar ul li a:hover { color: var(--unah-oro); }
 
-        /* TÍTULO CENTRAL IMPACTANTE (MEJORADO PARA MÓVIL) */
+        /* TÍTULO PRINCIPAL SIN ANIMACIONES */
         .main-header {
             text-align: center;
-            padding: 80px 20px 40px;
-            background: linear-gradient(to bottom, rgba(0,51,102,0.05), transparent);
+            padding: 100px 20px 60px;
         }
 
         .main-header h2 {
             color: var(--unah-azul);
-            /* Tamaño fluido según el dispositivo */
-            font-size: clamp(2rem, 8vw, 4rem); 
+            font-size: clamp(2.5rem, 10vw, 5rem); 
             text-transform: uppercase;
-            letter-spacing: 2px;
             font-weight: 900;
-            line-height: 1;
-            margin-bottom: 10px;
-            /* Efecto de relieve y color */
-            text-shadow: 2px 2px 0px var(--unah-oro), 4px 4px 15px rgba(0,0,0,0.1);
-            position: relative;
-            display: inline-block;
-        }
-
-        .main-header h2::after {
-            content: "";
-            display: block;
-            width: 60%;
-            height: 6px;
-            background: var(--unah-oro);
-            margin: 10px auto 0;
-            border-radius: 3px;
+            line-height: 0.9;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px var(--unah-oro);
         }
 
         .main-header p {
             font-weight: 700;
             color: var(--unah-azul);
             font-size: clamp(0.9rem, 4vw, 1.3rem);
-            margin-top: 15px;
-            opacity: 0.8;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            opacity: 0.9;
         }
 
         /* CONTENEDOR */
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-        }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
 
         .section {
             padding: 40px 0;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         h1 {
             color: var(--unah-azul);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 25px;
             border-left: 8px solid var(--unah-oro);
             padding-left: 15px;
         }
 
         .topic-image {
             width: 100%;
-            height: 350px;
+            height: 380px;
             object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 4px solid white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--sombra-pulida);
+            border: 5px solid white;
         }
 
         .summary-box {
             background: var(--blanco);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            box-shadow: var(--sombra-pulida);
+            text-align: justify;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .card {
             background: var(--blanco);
-            padding: 20px;
-            border-radius: 10px;
-            border-top: 5px solid var(--unah-oro);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 6px solid var(--unah-oro);
+            box-shadow: var(--sombra-pulida);
+            transition: all 0.4s ease;
         }
 
-        .card h3 {
-            color: var(--unah-azul);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-hover);
         }
+
+        .card h3 { color: var(--unah-azul); margin-bottom: 12px; font-size: 1.2rem; }
 
         /* FOOTER */
         footer {
-            background: rgba(15, 15, 15, 0.98);
+            background: #0a0a0a;
             color: #fff;
-            padding: 50px 5% 30px;
+            padding: 60px 5% 40px;
             text-align: center;
-            margin-top: 40px;
-            border-top: 6px solid var(--unah-oro);
+            margin-top: 50px;
+            border-top: 8px solid var(--unah-oro);
         }
 
-        .profesor-name {
-            font-size: 1.2rem;
-            color: var(--unah-oro);
-            margin: 10px 0;
-            font-weight: bold;
-        }
+        .profesor-name { font-size: 1.4rem; color: var(--unah-oro); margin: 15px 0; font-weight: 800; }
 
         .copyright {
             margin-top: 25px;
@@ -210,13 +164,12 @@
             padding-top: 20px;
         }
 
-        /* AJUSTES ESPECÍFICOS PARA MÓVIL */
+        /* MÓVIL */
         @media (max-width: 768px) {
             .navbar { flex-direction: column; padding: 1rem; }
-            .navbar ul { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
-            .navbar ul li a { margin: 5px; font-size: 0.7rem; }
-            .topic-image { height: 200px; }
-            .main-header { padding: 50px 15px 30px; }
+            .navbar ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .topic-image { height: 220px; }
+            .main-header { padding: 60px 15px 30px; }
         }
     </style>
 </head>
@@ -225,89 +178,97 @@
     <header class="navbar">
         <div class="brand">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZGZbjL4lmbzeuyVBAg8epspIXJH-8Vb0Y7A&s" alt="Logo UNAH" class="logo-unah">
-            <span class="brand-text">UNAH COMAYAGUA</span>
+            <span class="brand-text">UNAH CAMPUS COMAYAGUA</span>
         </div>
         <nav>
             <ul>
                 <li><a href="#tema1">Crisis</a></li>
                 <li><a href="#tema2">Movilidad</a></li>
                 <li><a href="#tema3">Educación</a></li>
-                <li><a href="#tema4">Sociedad</a></li>
+                <li><a href="#tema4">Algoritmos</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main-header">
         <h2>MUNDOS<br>ESPECULATIVOS</h2>
-        <p>FACULTAD DE CIENCIAS SOCIALES</p>
+        <p>FACULTAD DE HUMANIDADES Y ARTES</p>
     </div>
 
     <main class="container">
 
         <section id="tema1" class="section">
             <h1>¿Crecer o Sobrevivir?</h1>
-            <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1000" alt="Imagen alusiva" class="topic-image">
+            <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1000" alt="Crisis Ecológica" class="topic-image">
             <div class="summary-box">
-                <p>Análisis de la crisis estructural del siglo XXI. El sistema orientado al crecimiento ilimitado choca con los límites biológicos del planeta bajo la mirada de <strong>Kohei Saito</strong>.</p>
+                <p>Abordamos la crisis climática no como un simple fallo técnico, sino como el resultado de una <strong>racionalidad económica</strong> que sacrifica la biosfera por la acumulación. Siguiendo a <strong>Kohei Saito</strong>, planteamos que el crecimiento infinito es físicamente imposible en un planeta finito. La propuesta especulativa es frenar la "máquina de escasez" del capital para recuperar los bienes comunes y garantizar la vida.</p>
             </div>
             <div class="grid">
                 <div class="card">
                     <h3>Antropoceno</h3>
-                    <p>La era donde el impacto humano define el futuro climático y ético.</p>
+                    <p>La huella humana ha alterado los ciclos geológicos, obligándonos a elegir entre el capital o la supervivencia.</p>
                 </div>
                 <div class="card" style="background: var(--unah-azul); color: white;">
-                    <h3 style="color: var(--unah-oro);">Capital vs Vida</h3>
-                    <p>Repensar el valor de lo común para garantizar la supervivencia colectiva.</p>
+                    <h3 style="color: var(--unah-oro);">Racionalidad Crítica</h3>
+                    <p>Necesitamos una economía que reconozca los límites biológicos y priorice el bienestar colectivo.</p>
                 </div>
             </div>
         </section>
 
         <section id="tema2" class="section">
             <h1>Movilidad Urbana Humana</h1>
-            <img src="https://images.unsplash.com/photo-1571333250630-f0230c320b6d?q=80&w=1000" alt="Movilidad" class="topic-image">
+            <img src="https://images.unsplash.com/photo-1571333250630-f0230c320b6d?q=80&w=1000" alt="Movilidad Humana" class="topic-image">
             <div class="summary-box">
-                <p>Propuesta de ciclovías en Comayagua basada en la <em>Ética de la Responsabilidad</em> de <strong>Hans Jonas</strong>, priorizando la vida sobre el automóvil.</p>
+                <p>Imaginamos una Comayagua diseñada para el peatón y el ciclista bajo el imperativo de <strong>Hans Jonas</strong>. La movilidad actual segrega y contamina; nuestra propuesta busca democratizar el espacio público. No se trata solo de construir ciclovías, sino de aplicar una ética donde el derecho a la ciudad sea una extensión de la responsabilidad hacia las generaciones futuras y el medio ambiente.</p>
             </div>
             <div class="grid">
                 <div class="card">
-                    <h3>Responsabilidad</h3>
-                    <p>Garantizar un entorno habitable para las generaciones que vienen.</p>
+                    <h3>Ética de Jonas</h3>
+                    <p>Actuar de forma que garanticemos que la vida siga siendo habitable y digna en el futuro.</p>
                 </div>
                 <div class="card">
-                    <h3>Ciudad Colectiva</h3>
-                    <p>Espacios públicos diseñados para la convivencia y la salud.</p>
+                    <h3>Espacio Vital</h3>
+                    <p>Recuperar las calles de Comayagua como lugares de encuentro social y salud pública.</p>
                 </div>
             </div>
         </section>
 
         <section id="tema3" class="section">
             <h1>Educación y Latido</h1>
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000" alt="Educación" class="topic-image">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000" alt="Pedagogía del Latido" class="topic-image">
             <div class="summary-box">
-                <p>Hacia un <strong>Modelo Sentipensante</strong> de <strong>Fals Borda</strong>. Una pedagogía que integra la razón con el corazón para transformar la realidad nacional.</p>
+                <p>La educación tradicional a menudo separa la mente del sentimiento. Proponemos el modelo <strong>Sentipensante</strong> de <strong>Fals Borda</strong>. Este enfoque busca formar personas íntegras que utilicen la razón técnica pero guiada por la empatía social. Una pedagogía liberadora inspirada en Galeano, donde el conocimiento no sea una mercancía, sino una herramienta para transformar Honduras.</p>
             </div>
             <div class="grid">
                 <div class="card" style="background: var(--unah-azul); color: white;">
                     <h3 style="color: var(--unah-oro);">Sentipensar</h3>
-                    <p>Unir mente y emoción para un aprendizaje con impacto social real.</p>
+                    <p>La fusión necesaria entre el rigor científico y la sensibilidad humana para resolver problemas reales.</p>
                 </div>
                 <div class="card">
-                    <h3>Galeano</h3>
-                    <p>"Me gusta la gente que no separa la razón del corazón".</p>
+                    <h3>Raíces de Respeto</h3>
+                    <p>Una educación que valore la identidad nacional y fomente un pensamiento crítico genuino.</p>
                 </div>
             </div>
         </section>
 
         <section id="tema4" class="section">
             <h1>La Sociedad Algorítmica</h1>
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000" alt="Tecnología" class="topic-image">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000" alt="Impacto de Algoritmos" class="topic-image">
             <div class="summary-box">
-                <p>Crítica a la desensibilización digital en la Generación Z y el impacto de los algoritmos en nuestra autonomía ética.</p>
+                <p>Analizamos la <strong>apatía algorítmica</strong> y la desensibilización digital en la Generación Z. Los entornos digitales no son neutrales; el fenómeno del <strong>"Filtro Burbuja"</strong> (Pariser) nos confina en ecosistemas de pensamiento que limitan nuestra autonomía ética. La exposición constante produce una <strong>sobrecarga cognitiva</strong> que satura el cerebro, reduciendo nuestra capacidad de juicio crítico. Proponemos una resistencia consciente: recuperar la autonomía frente a la automatización de la vida para evitar la deshumanización social mediada por la IA.</p>
             </div>
             <div class="grid">
+                <div class="card">
+                    <h3>Burbujas de Filtro</h3>
+                    <p>Los algoritmos deciden qué vemos, distorsionando nuestra percepción de la realidad social y política.</p>
+                </div>
+                <div class="card" style="background: var(--unah-azul); color: white;">
+                    <h3 style="color: var(--unah-oro);">Apatía Digital</h3>
+                    <p>El desafío de superar la indiferencia que genera el consumo infinito de contenido automatizado.</p>
+                </div>
                 <div class="card" style="grid-column: 1 / -1; text-align: center;">
-                    <h3>Conciencia Digital</h3>
-                    <p>Recuperar el juicio crítico humano frente al control de los datos.</p>
+                    <h3>Autonomía Ética</h3>
+                    <p>Reivindicar la capacidad humana de decidir fuera de los parámetros dictados por el Big Data.</p>
                 </div>
             </div>
         </section>
@@ -317,9 +278,9 @@
     <footer>
         <div>
             <h2>FILOSOFÍA GENERAL</h2>
-            <p><strong>UNAH COMAYAGUA | PAC 2026</strong></p>
+            <p><strong>UNAH CAMPUS COMAYAGUA | PAC 2026</strong></p>
             <div class="profesor-name">Lic. Hector Castellanos</div>
-            <p>Proyecto Final de Integración</p>
+            <p>Proyecto Final de Integración Crítica</p>
         </div>
         <div class="copyright">
             © 2026 Universidad Nacional Autónoma de Honduras
